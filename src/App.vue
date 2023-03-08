@@ -1,13 +1,19 @@
-<script>
-  import header from './components/header.vue';
-  import main from './components/main.vue';
-  import store from './store';
-  import axios from 'axios';
+<template>
+  <div>
+    <Header />
+    <Main />
+  </div>
+</template>
 
+<script>
+  import Header from './components/Header.vue';
+  import Main from './components/Main.vue';
+  import store from './store'
+  import axios from 'axios'
   export default {
     components: {
-      header,
-      main,
+      Main, 
+      Header
     },
     data() {
       return {
@@ -19,49 +25,45 @@
         return this.store.config.API_KEY
       },
       BASE_URI() {
-        return this.store.config.BARE_URI
+        return this.store.config.BASE_URI
+      },
+      search() {
+        return this.store.search
       },
       moviesEndpoint() {
         return this.BASE_URI + '/search/movie'
       }
     },
     watch: {
-      search(newVal,oldVal){
+      search(newVal,oldVal) {
         this.fetchData()
       }
     },
     methods: {
-      fetchData(){
+      fetchData() {
         console.log('fetch data')
-
         this.fetchMovies()
       },
-      fetchMovies(){
-        const url = this.store.config.BARE_URI + '/search/movie'
-        axios.get(url,{
-          params:{
-            api_key: this.store.config.API_KEY,
-            query: this.store.search,
+      fetchMovies() {
+        axios.get(this.moviesEndpoint,{
+          params: {
+            api_key: this.API_KEY,
+            query: this.search,
             language: 'it-IT'
           }
         }).then(res => {
+          console.log(res)
           const { results } = res.data
           this.store.movies = results
           console.log(this.store.movies)
-        }).catch(err =>{
+        }).catch(() => {
           this.store.movies = []
         })
       }
     }
+    
   }
 </script>
 
-<template>
-  <div>
-    <header></header>
-    <main></main>
-  </div>
-</template>
-
-<style lang="scss" scoped>
+<style lang="scss" >
 </style>

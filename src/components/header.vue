@@ -1,9 +1,25 @@
-<script>
-import store from '../store'
+<template>
+  <header>
 
+    <div class="container">
+      <div>
+        BOOLFLIX
+      </div>
+
+      <div>
+        <input type="text" placeholder="Carca per nome" @keyup.enter="setSearch" v-model="localSearch">
+        <button @click="setSearch">Cerca</button>
+      </div>
+    </div>
+
+  </header>
+</template>
+
+<script>
+  import store from '../store'
   export default {
     data() {
-      return {
+      return  {
         store,
         localSearch: ''
       }
@@ -15,20 +31,6 @@ import store from '../store'
     }
   }
 </script>
-
-<template>
-  <header>
-    <div class="container">
-      <div>
-        BOOLFIX
-      </div>
-      <div>
-        <input type="text" placeholder="cerca un nome" @keyup.enter="$emit('onSearch')" v-model="localSearch">
-        <button @click="$emit('onSearch')">cerca</button>        
-      </div>
-    </div>
-  </header>
-</template>
 
 <style lang="scss" scoped>
 .container {
