@@ -1,10 +1,12 @@
 <template>
     <li class="card">
       <h3>{{ item.title }}</h3>
+      <img :src="item.poster" alt="">
       <h4>{{ item.originalTitle }}</h4>
       <p>{{ item.language }}</p>
-      <img v-if="hasFlag" :src="flags[item.language]" alt="">
+      <img class="flag" v-if="hasFlag" :src="flags[item.language]" alt="">
       <p>{{ item.vote }}</p>
+      <div><font-awesome-icon v-for="star in numberOfStars" icon="fa-solid fa-star" /></div>
     </li>
   </template>
   
@@ -21,19 +23,27 @@
           flags: {
             it: '/it.png',
             en: '/en.png'
-          }
+          },
         }
       },
       computed: {
         hasFlag (){
           return this.flags[this.item.language]
+        },
+        numberOfStars (){
+          let stars = []
+          for (let i = 0 ; i < this.item.vote ; i++){
+            stars.push(i);
+          }          
+          return stars
+
         }
       }
     }
   </script>
   
   <style lang="scss" scoped>
-    img{
+    .flag{
       height: 30px;
     }
   </style>
