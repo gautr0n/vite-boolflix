@@ -2,7 +2,7 @@
     <main>
       <div class="container">
         <ul class="grid">
-          <Card v-for="movie in movies" :key="movie.id" :item="movie" />
+          <Card v-for="el in items" :key="el.id" :item="el" />
         </ul>
       </div>
     </main>
@@ -23,6 +23,22 @@
       computed: {
         movies() {
           return this.store.movies
+        },
+        items() {
+          const movies = this.store.movies;
+          const tv = this.store.tv;
+          const items = movies.concat(tv);
+
+          return items.map((item) => {
+            const isMovie = item.title !== undefined;
+
+            return{
+              title: isMovie ? item.title : item.name,
+              originalTitle: isMovie ? item.original_title : item.original_name,
+              language: item.original_language,
+              vote: item.vote_average
+            }
+          })
         }
       } 
     }

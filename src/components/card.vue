@@ -1,9 +1,10 @@
 <template>
     <li class="card">
       <h3>{{ item.title }}</h3>
-      <h4>{{ item.original_title }}</h4>
+      <h4>{{ item.originalTitle }}</h4>
       <p>{{ item.language }}</p>
-      <p>{{ item.vote_average }}</p>
+      <img v-if="hasFlag" :src="flags[item.language]" alt="">
+      <p>{{ item.vote }}</p>
     </li>
   </template>
   
@@ -14,9 +15,25 @@
           type: Object,
           required: true
         }
+      },
+      data() {
+        return {
+          flags: {
+            it: '/it.png',
+            en: '/en.png'
+          }
+        }
+      },
+      computed: {
+        hasFlag (){
+          return this.flags[this.item.language]
+        }
       }
     }
   </script>
   
   <style lang="scss" scoped>
+    img{
+      height: 30px;
+    }
   </style>

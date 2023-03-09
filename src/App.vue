@@ -32,6 +32,9 @@
       },
       moviesEndpoint() {
         return this.BASE_URI + '/search/movie'
+      },
+      tvsEndpoint() {
+        return this.BASE_URI + '/search/tv'
       }
     },
     watch: {
@@ -43,6 +46,7 @@
       fetchData() {
         console.log('fetch data')
         this.fetchMovies()
+        this.fetchTvs()
       },
       fetchMovies() {
         axios.get(this.moviesEndpoint,{
@@ -53,11 +57,27 @@
           }
         }).then(res => {
           console.log(res)
-          const { results } = res.data
+          const results = res.data.results
           this.store.movies = results
           console.log(this.store.movies)
         }).catch(() => {
           this.store.movies = []
+        })
+      },
+      fetchTvs() {
+        axios.get(this.tvsEndpoint,{
+          params: {
+            api_key: this.API_KEY,
+            query: this.search,
+            language: 'it-IT'
+          }
+        }).then(res => {
+          console.log(res)
+          const results = res.data.results
+          this.store.tv = results
+          console.log(this.store.tv)
+        }).catch(() => {
+          this.store.tv = []
         })
       }
     }
