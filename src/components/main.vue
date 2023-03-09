@@ -37,7 +37,7 @@
               poster: 'https://image.tmdb.org/t/p/w342' + item.poster_path,
               originalTitle: isMovie ? item.original_title : item.original_name,
               language: item.original_language,
-              vote: parseInt(item.vote_average / 2) 
+              vote: Math.ceil(item.vote_average / 2),
             }
           })
         }
