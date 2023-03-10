@@ -7,7 +7,7 @@
       </div>
 
       <div>
-        <input type="text" placeholder="Carca per nome" @keyup.enter="setSearch" v-model="localSearch">
+        <input type="text" placeholder="Cerca per nome" @keyup.enter="setSearch" v-model="localSearch">
         <button @click="setSearch">Cerca</button>
       </div>
     </div>
