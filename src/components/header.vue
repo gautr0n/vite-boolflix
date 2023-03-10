@@ -2,7 +2,7 @@
   <header>
 
     <div class="container">
-      <div>
+      <div class="title">
         BOOLFLIX
       </div>
 
@@ -37,5 +37,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #000000;
+  padding: 15px;
+  .title{
+    color: #C50000;
+    font-size: 24px;
+  }
 }
 </style>

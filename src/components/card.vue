@@ -1,7 +1,7 @@
 <template>
     <li class="card">
-      <h3>{{ item.title }}</h3>
       <img :src="item.poster" alt="">
+      <h3>{{ item.title }}</h3>
       <h4>{{ item.originalTitle }}</h4>
       <p>{{ item.language }}</p>
       <img class="flag" v-if="hasFlag" :src="flags[item.language]" alt="">

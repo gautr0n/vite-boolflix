@@ -50,5 +50,6 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 40px;
+    background-color: #434343;
   }
   </style>
