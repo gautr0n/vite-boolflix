@@ -46,6 +46,10 @@
   </script>
   
   <style lang="scss" scoped>
+  .container{
+    background-color: #434343;
+    min-height: 100vh;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(4,1fr);
